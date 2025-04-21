@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import Link from "next/link";
 import Image from "next/image";
-
 import { Button } from "./ui/button";
 import DisplayTechIcons from "./DisplayTechIcons";
-
 import { cn, getRandomInterviewCover } from "@/lib/utils";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
+import { InterviewCardProps } from "@/types/index";
+import { GlowingEffect } from "./ui/glowing-effect";
 
 const InterviewCard = async ({
   interviewId,
@@ -19,9 +19,9 @@ const InterviewCard = async ({
   const feedback =
     userId && interviewId
       ? await getFeedbackByInterviewId({
-          interviewId,
-          userId,
-        })
+        interviewId,
+        userId,
+      })
       : null;
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
@@ -38,8 +38,15 @@ const InterviewCard = async ({
   ).format("MMM D, YYYY");
 
   return (
-    <div className="card-border w-[360px] max-sm:w-full min-h-96">
-      <div className="card-interview">
+    <div className="card-border w-[360px] max-sm:w-full min-h-96 relative transition-transform duration-300 hover:scale-105">
+      <GlowingEffect
+        spread={40}
+        glow={true}
+        disabled={false}
+        proximity={64}
+        inactiveZone={0.01}
+      />     
+       <div className="card-interview">
         <div>
           {/* Type Badge */}
           <div

@@ -9,6 +9,7 @@ import {
 } from "@/lib/actions/general.action";
 import { Button } from "@/components/ui/button";
 import { getCurrentUser } from "@/lib/actions/auth.action";
+import { RouteParams } from "@/types";
 
 const Feedback = async ({ params }: RouteParams) => {
   const { id } = await params;
@@ -64,7 +65,7 @@ const Feedback = async ({ params }: RouteParams) => {
       {/* Interview Breakdown */}
       <div className="flex flex-col gap-4">
         <h2>Breakdown of the Interview:</h2>
-        {feedback?.categoryScores?.map((category, index) => (
+        {feedback?.categoryScores?.map((category: any, index: any) => (
           <div key={index}>
             <p className="font-bold">
               {index + 1}. {category.name} ({category.score}/100)
@@ -77,7 +78,7 @@ const Feedback = async ({ params }: RouteParams) => {
       <div className="flex flex-col gap-3">
         <h3>Strengths</h3>
         <ul>
-          {feedback?.strengths?.map((strength, index) => (
+          {feedback?.strengths?.map((strength: any, index: any) => (
             <li key={index}>{strength}</li>
           ))}
         </ul>
@@ -86,7 +87,7 @@ const Feedback = async ({ params }: RouteParams) => {
       <div className="flex flex-col gap-3">
         <h3>Areas for Improvement</h3>
         <ul>
-          {feedback?.areasForImprovement?.map((area, index) => (
+          {feedback?.areasForImprovement?.map((area: any, index: any) => (
             <li key={index}>{area}</li>
           ))}
         </ul>
